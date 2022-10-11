@@ -1,0 +1,32 @@
+{
+  "name": "xlz-ui",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm -C play dev",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vicons/ionicons5": "^0.12.0",
+    "@vue/tsconfig": "^0.1.3",
+    "@xlz-ui/components": "workspace:^1.0.0",
+    "@xlz-ui/theme-chalk": "workspace:^1.0.0",
+    "@xlz-ui/utils": "workspace:^1.0.0",
+    "sass": "^1.55.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.39.0",
+    "@typescript-eslint/parser": "^5.39.0",
+    "@vitejs/plugin-vue": "^3.1.0",
+    "@vue/eslint-config-typescript": "^11.0.2",
+    "eslint": "^8.24.0",
+    "eslint-plugin-vue": "^9.6.0",
+    "typescript": "^4.6.4",
+    "unplugin-vue-define-options": "^0.12.0",
+    "vite": "^3.1.0",
+    "vue": "^3.2.37",
+    "vue-tsc": "^0.40.4"
+  }
+}
