@@ -5,9 +5,9 @@ hero:
   name: xlz-ui 组件库
   text: 基于 Vue 3 的组件库.
   tagline: 掌握 vue3
-  image:
-    src: /a.svg
-    alt: VitePress
+  # image:
+  #   src: /a.svg
+  #   alt: VitePress
   actions:
     - theme: brand
       text: 快速开始

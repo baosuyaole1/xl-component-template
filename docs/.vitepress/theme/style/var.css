@@ -3,15 +3,17 @@
   --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: linear-gradient(
     135deg,
-    #f6ceec 10%,
-    #d939cd 50%,
+    #527cf2 5%,
+    #f6ceec 30%,
+    #d939cd 60%,
     #527cf2 100%
   );
   /* 图标背景 */
   --vp-home-hero-image-background-image: linear-gradient(
     135deg,
-    #f6ceec 10%,
-    #d939cd 50%,
+    #527cf2 5%,
+    #f6ceec 30%,
+    #d939cd 60%,
     #527cf2 100%
   );
   --vp-home-hero-image-filter: blur(150px);
@@ -27,7 +29,7 @@
   --vp-button-brand-active-border: #f6ceec;
 
   /* 主题基色 */
-  --vp-c-brand: #d939cd;
+  --vp-c-brand: #9e66cf;
   --vp-c-brand-light: #d939cd;
   --vp-c-brand-dark: #d939cd;
 }

@@ -1,5 +1,5 @@
 export default {
-  title: 'XLZ-UI',
+  title: '小乐子组件库',
   description: 'A Vue.js UI library.',
   lastUpdated: true,
   themeConfig: {
