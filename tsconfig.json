@@ -27,7 +27,8 @@
     // 排除掉哪些类库
     "node_modules",
     "**/__tests__",
-    "dist/**"
+    "dist/**",
+    ".eslintrc.js"
   ],
   "include": [
     "src",
@@ -36,8 +37,7 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "types/**/*.d.ts",
-    "src/**/*.vue",
-    ".eslintrc.js"
+    "src/**/*.vue"
   ],
   "ts-node": {
     "transpileOnly": true,
