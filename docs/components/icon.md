@@ -9,12 +9,12 @@ $ pnpm install @vicons/ionicons5
 - 如果你想像用例一样直接使用，你需要全局注册组件，才能够直接在项目里使用。
 
 <script setup lang="ts">
-import ZIcon from '@xlz-ui/components/icon';
+import XIcon from '@xlz-ui/components/icon';
 import { AccessibilityOutline , ArrowRedoOutline} from '@vicons/ionicons5'
 import {glyphs} from '@xlz-ui/components/icon/src/font/iconfont.json'
 </script>
 
-<ZIcon v-for="item in glyphs" :name="item.font_class" size="44">{{item.name}}</ZIcon>
+<XIcon v-for="item in glyphs" color="red" :name="item.font_class" :size="44">{{item.name}}</XIcon>
 
 ## API
 
