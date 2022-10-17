@@ -28,5 +28,21 @@
     "node_modules",
     "**/__tests__",
     "dist/**"
-  ]
+  ],
+  "include": [
+    "src",
+    "typings",
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "types/**/*.d.ts",
+    "src/**/*.vue",
+    ".eslintrc.js"
+  ],
+  "ts-node": {
+    "transpileOnly": true,
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  }
 }
