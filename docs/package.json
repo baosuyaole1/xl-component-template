@@ -1,7 +1,7 @@
 {
   "name": "docs",
   "version": "1.0.0",
-  "description": "",
+  "description": "组件库文档",
   "main": "index.js",
   "scripts": {
     "dev": "vitepress dev .",

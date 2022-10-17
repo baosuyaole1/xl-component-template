@@ -1,7 +1,7 @@
 import DefaultTheme from 'vitepress/theme';
 import '@xlz-ui/theme-chalk/src/index.scss';
 import ZIcon from '@xlz-ui/components/icon';
-import './style/var.css';
+import './style/var.scss';
 
 export default {
   ...DefaultTheme,
