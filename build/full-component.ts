@@ -17,8 +17,9 @@
    // rollup 打包的配置信息
    const config = {
      input: path.resolve(wpRoot, "index.ts"), // 打包入口
-     plugins: [nodeResolve(), typescript(), vue(), commonjs()],
-     external: (id) => /^vue/.test(id), // 打包的时候不打包vue代码
+
+     plugins: [nodeResolve(),typescript(),vue(), commonjs()],
+    //  external: (id) => /^vue/.test(id), // 打包的时候不打包vue代码
    };
 
    // 组件库两种使用方式 import 导入组件库 在浏览器中使用script
@@ -44,11 +45,11 @@
 
    let bundle = await rollup(config);
 
-   return Promise.all(
-     buildConfig.map((option) => {
-       bundle.write(option as OutputOptions);
-     })
-   );
+  //  return Promise.all(
+  //    buildConfig.map((option) => {
+  //      bundle.write(option as OutputOptions);
+  //    })
+  //  );
  };
 
  async function buildEntry() {
@@ -77,6 +78,6 @@
        .map((option) => bundle.write(option as OutputOptions))
    );
  }
-
+//  buildEntry
  // gulp适合流程控制和代码的转义  没有打包的功能
- export const buildFullComponent = parallel(buildFull,buildEntry);
+ export const buildFullComponent = parallel(buildFull);

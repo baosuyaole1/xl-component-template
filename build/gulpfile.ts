@@ -21,13 +21,13 @@ const copySourceCode = () => async () => {
 export default series(
   withTaskName("clean", async () => run("rm -rf ./dist")), // 删除dist目录
   parallel(
-    withTaskName("buildPackages", () =>
-      run("pnpm run --filter @xlz-ui/* --parallel build")
-    ),
-    // 并行执行packages目录下的build脚本
-    // withTaskName("buildFullComponent", () =>
-    //   run("pnpm run build buildFullComponent")
+    // withTaskName("buildPackages", () =>
+    //   run("pnpm run --filter @xlz-ui/* --parallel build")
     // ),
+    // 并行执行packages目录下的build脚本
+    withTaskName("buildFullComponent", () =>
+      run("pnpm run build buildFullComponent")
+    ),
      // 执行build命令时会调用rollup，给rollup传参数buildFullComponent，那么就会执行导出任务叫buildFullComponent
     // withTaskName("buildComponent", () => run("pnpm run build buildComponent"))
   ),
