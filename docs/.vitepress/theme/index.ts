@@ -1,11 +1,10 @@
 import DefaultTheme from 'vitepress/theme';
 import '@xlz-ui/theme-chalk/src/index.scss';
-import ZIcon from '@xlz-ui/components/icon';
+import xlzUI from '@xlz-ui/components';
 import './style/var.scss';
-
 export default {
   ...DefaultTheme,
   enhanceApp({ app }) {
-    app.use(ZIcon); // 注册组件
+    app.use(xlzUI); // 注册组件
   },
 };
