@@ -1,16 +1,15 @@
-import { outDir, projectRoot, wpRoot } from "./utils/paths";
+import { outDir, projRoot, xlzRoot } from "./utils/paths";
 import glob from "fast-glob";
 import { Project, ModuleKind, ScriptTarget, SourceFile } from "ts-morph";
 import path from "path";
 import fs from "fs/promises";
 import { parallel, series } from "gulp";
-import { run, withTaskName } from "./utils";
+import { run, withTaskName,pathRewriter } from "./utils";
 import { buildConfig } from "./utils/config";
-
 
 export const genEntryTypes = async () => {
   const files = await glob("*.ts", {
-    cwd: wpRoot,
+    cwd: xlzRoot,
     absolute: true,
     onlyFiles: true,
   });
@@ -21,13 +20,13 @@ export const genEntryTypes = async () => {
       allowJs: true,
       emitDeclarationOnly: true,
       noEmitOnError: false,
-      outDir: path.resolve(outDir, "entry/types"),
+      outDir: path.resolve(outDir, "entry"),
       target: ScriptTarget.ESNext,
-      rootDir: wpRoot,
+      rootDir: xlzRoot,
       strict: false,
     },
     skipFileDependencyResolution: true,
-    tsConfigFilePath: path.resolve(projectRoot, "tsconfig.json"),
+    tsConfigFilePath: path.resolve(projRoot, "tsconfig.json"),
     skipAddingFilesFromTsConfig: true,
   });
   const sourceFiles: SourceFile[] = [];
@@ -45,7 +44,8 @@ export const genEntryTypes = async () => {
       await fs.mkdir(path.dirname(filepath), { recursive: true });
       await fs.writeFile(
         filepath,
-        outputFile.getText().replaceAll("@xlz-ui", "."),
+        // outputFile.getText().replaceAll("@xlz-ui", "."),
+        pathRewriter("es")(outputFile.getText()),// @xlz-ui => xlz-ui/es xlz-ui/lib  处理路径
         "utf8"
       );
     }
@@ -53,7 +53,7 @@ export const genEntryTypes = async () => {
   await Promise.all(tasks);
 };
 export const copyEntryTypes = () => {
-  const src = path.resolve(outDir, "entry/types");
+  const src = path.resolve(outDir, "entry");
   const copy = (module) =>
     parallel(
       withTaskName(`copyEntryTypes:${module}`, () =>

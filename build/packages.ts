@@ -2,7 +2,7 @@
 import { series, parallel, src, dest } from "gulp";
 import { buildConfig } from "./utils/config";
 import path from "path";
-import { outDir, projectRoot } from "./utils/paths";
+import { outDir, projRoot } from "./utils/paths";
 import ts from "gulp-typescript";
 import { withTaskName } from "./utils";
 
@@ -14,7 +14,7 @@ export const buildPackages = (dirname: string, name: string) => {
     return series(
       // 处理ts文件
       withTaskName(`build${dirname}`, () => {
-        const tsConfig = path.resolve(projectRoot, "tsconfig.json"); // ts配置文件路径
+        const tsConfig = path.resolve(projRoot, "tsconfig.json"); // ts配置文件路径
         const inputs = ["**/*.ts", "!gulpfile.ts", "!node_modules"];
         return src(inputs)
           .pipe(

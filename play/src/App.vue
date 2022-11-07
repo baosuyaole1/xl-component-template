@@ -1,12 +1,9 @@
-<script setup lang="ts">
-import XIcon from '@xlz-ui/components/icon';
-import { AccessibilityOutline } from '@vicons/ionicons5';
-</script>
-
 <template>
-  <div>
-    <XIcon name="yinliang">
-      <!-- <AccessibilityOutline></AccessibilityOutline> -->
-    </XIcon>
-  </div>
+  <XIcon name="anquanchaxun" color="red"></XIcon>
 </template>
+<script lang="ts" setup>
+import "@xlz-ui/theme-chalk/src/icon.scss";
+import XIcon from "@xlz-ui/components/icon";
+// import XIcon from "../../dist";
+console.log(XIcon);
+</script>

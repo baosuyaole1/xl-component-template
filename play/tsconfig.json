@@ -6,14 +6,14 @@
     "moduleResolution": "Node",
     "strict": true,
     "jsx": "preserve",
-    "sourceMap": false,
+    "sourceMap": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
     "lib": ["ESNext", "DOM"],
-    "skipLibCheck": true,
-    "types": ["unplugin-vue-define-options"] // sfc 添加 name属性的包需要的
+    "skipLibCheck": true
   },
+  "types": ["unplugin-vue-define-options"], // sfc 添加 name属性的包需要的
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

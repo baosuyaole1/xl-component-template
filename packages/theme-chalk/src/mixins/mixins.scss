@@ -1,15 +1,15 @@
-@use 'config' as *;
-@forward 'config';
+@use "config" as *;
+@forward "config";
 
-// z-icon
+// xlz-icon
 @mixin b($block) {
-  $B: $namespace + '-' + $block;
+  $B: $namespace + "-" + $block;
   .#{$B} {
     @content;
   }
 }
 
-// z-icon.is-xxx
+// xlz-icon.is-xxx
 @mixin when($state) {
   @at-root {
     &.#{$state-prefix + $state} {
@@ -18,8 +18,7 @@
   }
 }
 
-// .z-icon--primary
-
+// .xlz-icon--primary
 @mixin m($modifier) {
   @at-root {
     #{& + $modifier-separator + $modifier} {
@@ -28,7 +27,7 @@
   }
 }
 
-// z-icon__header
+// xlz-icon__header
 @mixin e($element) {
   @at-root {
     #{& + $element-separator + $element} {

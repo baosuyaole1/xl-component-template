@@ -1,7 +1,7 @@
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import DefineOptions from 'unplugin-vue-define-options/vite';
-// https://vitejs.dev/config/
+import { defineConfig } from 'vite'
+import DefineOptions from 'unplugin-vue-define-options/vite'
+import vue from '@vitejs/plugin-vue'
+
 export default defineConfig({
   plugins: [vue(), DefineOptions()],
-});
+})

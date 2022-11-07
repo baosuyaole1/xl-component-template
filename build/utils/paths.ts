@@ -1,13 +1,10 @@
-import path from "path"
-
-// 项目根目录
-export const projectRoot = path.resolve(__dirname,'../../')
-
-// 打包输出目录
-export const outDir = path.resolve(__dirname,'../../dist')
-
+import { resolve } from 'path'
+// 根目录
+export const projRoot = resolve(__dirname, '..','..')
+export const outDir=resolve(projRoot,'dist')
 // xlz-ui 入口 index.ts
-export const wpRoot = path.resolve(__dirname,'../../packages/xlz-ui')
-
+export const xlzRoot = resolve(projRoot,'packages/xlz-ui')
 // 组件目录
-export const compRoot = path.resolve(projectRoot,'packages/components')
+export const compRoot = resolve(projRoot,'packages/components')
+/** `/dist` */
+export const buildOutput = resolve(projRoot, 'dist')

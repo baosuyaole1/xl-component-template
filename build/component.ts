@@ -1,18 +1,23 @@
 /**
- * 安装依赖 pnpm install fast-glob -w -D
+ * 安装依赖 pnpm install fast-glob ts-morph -w -D
  */
  import { nodeResolve } from "@rollup/plugin-node-resolve";
  import commonjs from "@rollup/plugin-commonjs";
  import vue from "rollup-plugin-vue";
  import typescript from "rollup-plugin-typescript2";
+ import RollupPluginPostcss from 'rollup-plugin-postcss'; // 解决组件内部如果有css 打包会报错的css插件
+ import Autoprefixer from 'autoprefixer'
+import cssnano from 'cssnano'
  import { series, parallel } from "gulp";
  import { sync } from "fast-glob"; // 同步查找文件
- import { compRoot, outDir, projectRoot } from "./utils/paths";
+ import { compRoot, outDir, projRoot } from "./utils/paths";
  import path from "path";
  import { rollup, OutputOptions } from "rollup";
  import { buildConfig } from "./utils/config";
  import { pathRewriter, run } from "./utils";
  import { Project, SourceFile } from "ts-morph";
+ import { terser } from 'rollup-plugin-terser';// 压缩js代码
+import cleanup from 'rollup-plugin-cleanup';// 去除无效代码
  import glob from "fast-glob";
  import * as VueCompiler from "@vue/compiler-sfc";
  import fs from "fs/promises";
@@ -31,7 +36,18 @@
      const input = path.resolve(compRoot, file, "index.ts");
      const  config = {
        input,
-       plugins: [nodeResolve(), typescript(), vue(), commonjs()],
+       plugins: [
+        nodeResolve(),
+        vue({
+          preprocessStyles: false
+        }), 
+        typescript(),
+        
+       RollupPluginPostcss({ extract: true, plugins: [Autoprefixer,cssnano()] }),
+       commonjs(), 
+      //  cleanup(), 
+      //  terser({ compress: { drop_console: true }})// 压缩js代码 及删除console
+       ],
        external: (id) => /^vue/.test(id) || /^@xlz-ui/.test(id), // 排除掉vue和@xlz-ui的依赖
      }
      const bundle = await rollup(config);
@@ -58,15 +74,15 @@
        declaration: true,
        emitDeclarationOnly: true,
        noEmitOnError: true,
-       outDir: path.resolve(outDir, "types"),
-       baseUrl: projectRoot,
+       outDir: path.resolve(outDir, "./"),
+       baseUrl: projRoot,
        paths: {
          "@xlz-ui/*": ["packages/*"],
        },
        skipLibCheck: true,
        strict: false,
      },
-     tsConfigFilePath: path.resolve(projectRoot, "tsconfig.json"),
+     tsConfigFilePath: path.resolve(projRoot, "tsconfig.json"),
      skipAddingFilesFromTsConfig: true,
    });
 
@@ -76,9 +92,14 @@
      onlyFiles: true,
      absolute: true,
    });
-
+  //  const filePathsDTS = await glob("**/*", {
+  //   // ** 任意目录  * 任意文件
+  //   cwd: path.resolve(projRoot, "packages/types"),
+  //   onlyFiles: true,
+  //   absolute: true,
+  // });
+  // filePaths.push(filePathsDTS[0])
    const sourceFiles: SourceFile[] = [];
-
    await Promise.all(
      filePaths.map(async function (file) {
        if (file.endsWith(".vue")) {
@@ -116,19 +137,23 @@
    await Promise.all(tasks);
  }
 
- function copyTypes() {
-   const src = path.resolve(outDir, "types/components/");
-   const copy = (module) => {
-     let output = path.resolve(outDir, module, "components");
-     return () => run(`cp -r ${src}/* ${output}`);
-   };
-   return parallel(copy("es"), copy("lib"));
- }
+//  function copyTypes() {
+//    const src = path.resolve(outDir, "components/");
+  
+//    const copy = (module) => {
+//      let output = path.resolve(outDir, module, "components");
+//      console.log(src,output,module)
+//      return () => run(`cp -r ${src}/* ${output}`);
+//    };
+//    return parallel(copy("es"), copy("lib"));
+//  }
 
  async function buildComponentEntry() {
    const config = {
      input: path.resolve(compRoot, "index.ts"),
-     plugins: [typescript()],
+     plugins: [typescript(), cleanup(),
+      terser({ compress: { drop_console: true }})// 压缩js代码 及删除console
+    ],
      external: () => true,
    };
    const bundle = await rollup(config);
@@ -145,6 +170,6 @@
  export const buildComponent = series(
    buildEachComponent,
    genTypes,
-   copyTypes(),
+  //  copyTypes(),
    buildComponentEntry
  );

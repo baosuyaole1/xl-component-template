@@ -9,7 +9,7 @@
     "jsx": "preserve", // jsx 不转
     "noLib": false, // 不处理类库
     "target": "es6", // 遵循es6版本
-    "sourceMap": true,
+    "sourceMap": false,
     "lib": [
       // 编译时⽤的库
       "ESNext",
@@ -23,26 +23,12 @@
     "skipLibCheck": true, // 跳过类库检测
     "types": ["unplugin-vue-define-options"] // sfc 添加 name属性的包需要的
   },
+  // "include": ["packages"],
   "exclude": [
     // 排除掉哪些类库
     "node_modules",
     "**/__tests__",
     "dist/**",
-    ".eslintrc.js"
-  ],
-  "include": [
-    "src",
-    "typings",
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "types/**/*.d.ts",
-    "src/**/*.vue"
-  ],
-  "ts-node": {
-    "transpileOnly": true,
-    "compilerOptions": {
-      "module": "commonjs"
-    }
-  }
+    "**.js"
+  ]
 }

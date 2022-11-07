@@ -9,7 +9,7 @@ export const buildConfig = {
       path: path.resolve(outDir, "es"),
     },
     bundle: {
-      path: "xlz-ui/es",
+      path: "xlz-plus/es",
     },
   },
   cjs: {
@@ -20,7 +20,7 @@ export const buildConfig = {
       path: path.resolve(outDir, "lib"),
     },
     bundle: {
-      path: "xlz-ui/lib",
+      path: "xlz-plus/lib",
     },
   },
 };

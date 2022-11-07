@@ -8,11 +8,5 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "unplugin-vue-define-options": "^0.12.0"
-  },
-  "eslintIgnore": [
-    "icon/src/font/iconfont.js"
-  ]
+  "license": "ISC"
 }
